@@ -1,0 +1,177 @@
+{
+ "_comment": "MV 範本設定。欄位說明見 README.md。範例是〈把青春唱成光〉的前 4 鏡（完整 70 鏡在 examples/）。鏡表從 preview/shots_draft.json（tools/mv_song.py 產生）改起。",
+ "title": "歌名",
+ "repo_dir": "../..",
+ "song": "assets/song.mp3",
+ "vocals": "assets/vocals_48k.wav",
+ "h3_quality": "faces",
+ "instruments": {
+  "boy": {
+   "desc": "a translucent cherry-red Telecaster-style electric guitar with a white pickguard and a maple neck (no logo on the headstock)",
+   "ref": "refs/guitar_boy.jpeg"
+  },
+  "girl": {
+   "desc": "a cherry-sunburst Les Paul-style electric guitar with a cream pickguard (no logo on the headstock)",
+   "ref": "refs/guitar_girl.jpg"
+  }
+ },
+ "instrument_note": "Guitar orientation (very important): every guitar's HEADSTOCK points toward the RIGHT side of the image (viewer's right), body on the left; the player's LEFT hand is on the neck and the RIGHT hand strums. Never mirrored, never left-handed.",
+ "age_note": "The children look exactly like their reference photos and keep the same young age (elementary-school kids with childlike faces, never teenagers).",
+ "storyboard_cast": "Characters (keep consistent across panels): BOY = a 12-year-old Taiwanese boy with a very short buzz cut; GIRL = a 10-year-old girl with shoulder-length hair and bangs.",
+ "cine": "A cinematic film still from a Taiwanese coming-of-age music video, realistic live-action photograph shot on Kodak Vision3 film with a 50mm lens, natural skin texture, shallow depth of field, subtle film grain, warm amber and soft teal grade. Full-frame image, NO black letterbox bars. ",
+ "frame_suffix": " No text, no letters, no logos, no watermark, no captions anywhere (including guitar headstocks, jerseys and walls). Every hand has exactly five fingers.",
+ "h3": {
+  "style": "a realistic cinematic live-action Taiwanese coming-of-age music video, 35mm film grain, natural skin texture",
+  "setting": "a Taiwanese elementary school",
+  "camera": "The camera holds a steady shot on a tripod.",
+  "constraints": [
+   "No captions and no readable text appear.",
+   "Hands keep exactly five natural fingers; guitar necks and strings stay straight and intact.",
+   "No new people walk into the frame.",
+   "This is one single continuous shot: no cuts, no scene changes, and no new people, hands or objects enter from the edges of the frame."
+  ],
+  "soundscape_sing": "Only the singing voices of <Audio 1>; no other sound.",
+  "soundscape_silent": "Silence."
+ },
+ "chars": {
+  "boy": {
+   "name": "男孩",
+   "kind": "live",
+   "ref": "refs/boy.jpg",
+   "look": "a 12-year-old Taiwanese boy with a round face, single-eyelid eyes, slightly tanned skin and a very short black buzz cut, wearing a light-blue and black color-block short-sleeve sports jersey with a large stylized dark bird graphic and no readable lettering, and black athletic shorts",
+   "h3_voice": "a bright, unbroken boy's singing voice"
+  },
+  "girl": {
+   "name": "女孩",
+   "kind": "live",
+   "ref": "refs/girl.jpg",
+   "look": "a 10-year-old Taiwanese girl with a slim oval face, big bright eyes and straight glossy black shoulder-length hair with blunt bangs, wearing a dusty-pink crew-neck sweatshirt with a small white fluffy bunny appliqué, a grey-blue pleated skirt, white knee socks and lavender sneakers",
+   "h3_voice": "a clear, sweet young girl's singing voice"
+  }
+ },
+ "masters": {
+  "field": "A cinematic wide film still. A Taiwanese elementary school sports field on a sunny day: a red running track with white lane lines around green grass, a big shady banyan tree at one side, a basketball hoop, and a three-story school building with long open corridors in the background. Bright, realistic, no people.",
+  "classroom": "A cinematic wide film still, shot on Kodak Vision3 film. An empty Taiwanese elementary school classroom on a bright morning: a large green chalkboard with nothing written on it on the front wall, rows of simple wooden desks and chairs (a few pushed aside to open a space at the front), a row of large windows along the LEFT wall with warm sunlight streaming in and soft light beams, a small black guitar amplifier on the floor near the front. Warm amber and soft teal grade, realistic, clean.",
+  "rooftop": "A cinematic wide film still. The flat concrete rooftop of a Taiwanese elementary school on a clear sunny morning: a waist-high concrete parapet with a metal railing, a small black guitar amplifier with a cable, blue sky with soft clouds, and beyond the railing a generic Taiwanese city skyline of mid-rise apartment blocks and green hills in the distance (no famous landmark, no skyscraper tower). Bright, fresh, realistic."
+ },
+ "shots": [
+  {
+   "id": "A01",
+   "t0": 0.0,
+   "t1": 4.0,
+   "dur": 4.0,
+   "kind": "景",
+   "lyric": "（前奏）",
+   "refs": [],
+   "scene": [
+    "field",
+    [
+     0,
+     0,
+     1,
+     1
+    ]
+   ],
+   "frame": "Wide establishing shot at sunrise: the empty school sports field and the three-story school building, golden morning light, long shadows, a few birds in the sky. No people.",
+   "action": "Morning light slowly brightens over the empty school field; leaves sway gently in the breeze.",
+   "camera": "The camera slowly pushes forward.",
+   "extra_constraints": [
+    "No people appear."
+   ],
+   "panel": "wide establishing shot: empty school sports field at sunrise"
+  },
+  {
+   "id": "A02",
+   "t0": 4.0,
+   "t1": 8.0,
+   "dur": 4.0,
+   "kind": "手",
+   "lyric": "（前奏吉他）",
+   "refs": [
+    "boy"
+   ],
+   "scene": [
+    "rooftop",
+    [
+     0,
+     0,
+     1,
+     1
+    ]
+   ],
+   "frame": "Extreme close-up of a boy's right hand strumming a translucent cherry-red Telecaster-style electric guitar with a white pickguard and a maple neck (no logo on the headstock) on a school rooftop in morning sunlight; only the hand, the strings, the pickguard and part of the light-blue and black jersey are visible; his face is out of frame.",
+   "action": "The right hand strums one bold chord down across the strings and lets it ring; fingers stay natural and five-fingered.",
+   "extra_constraints": [
+    "Only one hand is visible; exactly five fingers; the face stays out of frame."
+   ]
+  },
+  {
+   "id": "A03",
+   "t0": 8.0,
+   "t1": 11.8,
+   "dur": 3.8,
+   "kind": "奏",
+   "lyric": "（前奏）",
+   "refs": [
+    "girl"
+   ],
+   "scene": [
+    "rooftop",
+    [
+     0,
+     0,
+     1,
+     1
+    ]
+   ],
+   "frame": "Medium shot on the sunny school rooftop: the girl from <image1> stands holding a cherry-sunburst Les Paul-style electric guitar with a cream pickguard (no logo on the headstock), fingers on the strings, looking down at the guitar; railing and distant city behind her.",
+   "action": "The girl plucks the strings, then lifts her head and turns to smile toward someone just off-screen to her right. Her lips stay closed in a smile."
+  },
+  {
+   "id": "A04",
+   "t0": 11.8,
+   "t1": 15.3,
+   "dur": 3.5,
+   "kind": "奏",
+   "lyric": "（Build up）",
+   "refs": [
+    "boy",
+    "girl"
+   ],
+   "scene": [
+    "rooftop",
+    [
+     0,
+     0,
+     1,
+     1
+    ]
+   ],
+   "frame": "Wide shot on the sunny school rooftop: the boy from <image1> holding a translucent cherry-red Telecaster-style electric guitar with a white pickguard and a maple neck (no logo on the headstock) and the girl from <image2> holding a cherry-sunburst Les Paul-style electric guitar with a cream pickguard (no logo on the headstock) stand side by side, a small amp at their feet with cables, the railing and distant city behind them.",
+   "action": "Both keeps playing the guitar in rhythm with lips closed, nodding slightly to the beat, then glance at each other and grin."
+  },
+  {
+   "id": "A05",
+   "t0": 15.3,
+   "t1": 19.3,
+   "dur": 4.0,
+   "kind": "唱",
+   "lyric": "還記得那年第一次進教室",
+   "refs": [
+    "boy"
+   ],
+   "scene": [
+    "classroom",
+    [
+     0,
+     0,
+     1,
+     1
+    ]
+   ],
+   "frame": "Medium shot in the morning classroom: the boy from <image1> sits on the edge of a wooden desk at the front, holding a translucent cherry-red Telecaster-style electric guitar with a white pickguard and a maple neck (no logo on the headstock), the green blank chalkboard behind him, sunlight from the window on the left; his face and mouth are clearly visible.",
+   "action": "He sings the lyric with a natural open mouth and expressive face while strumming the guitar in time; his lips follow the song exactly."
+  }
+ ],
+ "seeds": {}
+}

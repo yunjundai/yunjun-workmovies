@@ -23,19 +23,29 @@
 | Veda R2VA 打分器（`minimax_h3_r2va_veda_preview_fp8`，Colab 版自動下載；2026-10-16 加入） | 沿用 MiniMax H3 Community License（作者標示） | 同 H3 | 同 H3 | https://huggingface.co/Veda-Sparse/Minimax-H3-R2VA-Veda-Preview |
 | H3 Fun ControlNet patches | 沿用 MiniMax H3 Community License | 同 H3 | 同 H3 | https://huggingface.co/alibaba-pai/MiniMax-H3-Fun-Controlnet-Union-2.0 |
 | Qwen3-VL-32B Heretic 文字編碼器（ethanfel，INT8 ConvRot） | Apache-2.0（上游 Qwen3-VL-32B-Instruct 亦 Apache-2.0） | 可以 | 保留授權；與 H3 併用時 H3 使用規範照樣適用 | https://huggingface.co/ethanfel/Qwen3-VL-32B-Ultra-Heretic-H3-ComfyUI-INT8-ConvRot |
-| **Qwen-Image 2.1**（含 Comfy-Org 版） | **Qwen RESEARCH LICENSE AGREEMENT** | **不可以**（僅研究／評估；商用請洽 model-business@notice.qwencloud.com） | 轉散布附授權全文與聲明「Qwen is licensed under the Qwen RESEARCH LICENSE AGREEMENT, Copyright (c) 2026 Hangzhou Tongyi Laboratory Technology Co., Ltd. All Rights Reserved.」；用它做或改進模型須標「Built with Qwen」 | https://huggingface.co/Qwen/Qwen-Image-2.1/blob/main/LICENSE |
+| **Qwen-Image 2.1**（含 Comfy-Org 版、2.1 Turbo 草稿模型） | **Qwen RESEARCH LICENSE AGREEMENT** | **不可以**（僅研究／評估；商用請洽 model-business@notice.qwencloud.com） | 轉散布附授權全文與聲明「Qwen is licensed under the Qwen RESEARCH LICENSE AGREEMENT, Copyright (c) 2026 Hangzhou Tongyi Laboratory Technology Co., Ltd. All Rights Reserved.」；用它做或改進模型須標「Built with Qwen」 | https://huggingface.co/Qwen/Qwen-Image-2.1/blob/main/LICENSE |
 | Qwen-Image-Edit 2511（含 Comfy-Org 版）、Qwen2.5-VL-7B 文字編碼器 | Apache-2.0 | 可以 | 保留授權與 NOTICE | https://huggingface.co/Qwen/Qwen-Image-Edit-2511 |
 | MiniMax Music 3 | MiniMax-Music3 COMMUNITY LICENSE（2026-08-06）；Comfy-Org 版標示的 Apache-2.0 **與原始授權不符，以原始為準** | 可以（年營收 > 2,000 萬美元需授權） | 保留聲明；商業產品顯著標示「MiniMax-Music3」；公開內容標示機器生成；不得冒充他人 | https://huggingface.co/MiniMaxAI/MiniMax-Music3/blob/main/LICENSE |
 | VoxCPM2（權重與程式碼） | Apache-2.0 | 可以 | 嚴禁冒充他人、詐騙、假訊息；強烈建議標示 AI 生成 | https://huggingface.co/openbmb/VoxCPM2 |
 | **Breeze TTS 2** 權重（含自架產出） | **BreezeBlue Research and Non-Commercial License v1.1** | **不可以**（官方付費 API 的產出才可商用） | 不得用產出訓練／微調／蒸餾非 BreezeBlue 模型；參考音須有權利、不得未經同意模仿真人；NOTICE：「Breeze TTS 2 is licensed under the BreezeBlue Research and Non-Commercial License Agreement. Copyright (c) 2026 RESONIA, INC. All Rights Reserved.」 | https://huggingface.co/BreezeBlue/Breeze-TTS-2/blob/main/LICENSE |
 | **BreezyVoice-300M**（聯發科 MediaTek Research＋台大；權重與程式碼） | Apache-2.0 | 可以 | 保留授權與 NOTICE；參考音須有權利 | https://huggingface.co/MediaTek-Research/BreezyVoice-300M 、https://github.com/mtkresearch/BreezyVoice |
+| **Ming-3.0-TTS 0.5B**（inclusionAI 螞蟻集團；drbaph 的 ComfyUI 單檔轉檔）＋ComfyUI-Ming-3-tts 節點（Saganaki22） | MIT（程式、權重、轉檔、節點） | 可以 | 保留授權；參考音須有權利 | https://huggingface.co/inclusionAI 、https://huggingface.co/drbaph/Ming-3.0-tts-ComfyUI 、https://github.com/Saganaki22/ComfyUI-Ming-3-tts |
 | g2pW 注音模型（G2PWModel-v2-onnx，BreezyVoice 第一次執行時自動下載）＋bert-base-chinese tokenizer | Apache-2.0 | 可以 | 保留授權 | https://github.com/GitYCC/g2pW |
 | Whisper large-v3（openai）／faster-whisper-large-v3（Systran 轉檔） | Apache-2.0／MIT | 可以 | 保留授權 | https://huggingface.co/Systran/faster-whisper-large-v3 |
 | BS-RoFormer `model_bs_roformer_ep_317_sdr_12.9755`（viperx 訓練） | **未標示授權** | 不明 | 只附下載連結，不轉散布，自行評估 | https://github.com/ZFTurbo/Music-Source-Separation-Training/blob/main/docs/pretrained_models.md |
 | FlashVSR v1.1 | Apache-2.0（含 Wan2.1 VAE，Apache-2.0） | 可以 | 保留授權 | https://huggingface.co/JunhaoZhuang/FlashVSR-v1.1 |
 | 動作 LoRA：JOKER141 Combat-Base-V2、GunFu、Motion-Continuity-Repair；RunningHubAI speed-slider-1.1 | **未標示授權**（等同保留所有權利）；同時是 H3 衍生作品 | 不明 | 只附連結、不轉散布；至少須遵守 H3 授權 | https://huggingface.co/JOKER141 、https://huggingface.co/RunningHubAI/rh-h3-speed-slider-1.1-lora |
 | SDPose（Comfy-Org 打包）、RT-DETRv4 | MIT／Apache-2.0（SD 底模授權未查） | 大致可以 | 保留授權 | https://huggingface.co/Comfy-Org/SDPose |
+| SAM 3D Body、SAM 3.1、MoGe-3（Comfy-Org 打包；白模動作參考 `make_whitemodel.py`，2026-10-23 加入） | 各自官方授權（Meta SAM License／Microsoft MoGe；**本 repo 未逐條查核**） | 請自行查核 | 本 repo 不含權重，只附下載清單 `setup/downloads_whitemodel.json` | https://huggingface.co/Comfy-Org/sam-3d-body 、 https://huggingface.co/Comfy-Org/sam3.1 、 https://huggingface.co/Comfy-Org/MoGe |
+| MiniMax 官方 `h3-prompt-writing` 技能（寫提示詞的規則文件） | MiniMax H3 Community License | 同 H3 | 本 repo 不含，文件只教你從官方 repo 安裝 | https://github.com/MiniMax-AI/MiniMax-H3/tree/main/skills/h3-prompt-writing |
+| 遠景小臉精修（`tools/face_refine.py`，選用，2026-10-24 加入）：MiniMax H3 FL2VA 剪枝 int8（Comfy-Org） | MiniMax H3 Community License | 同 H3 | 同 H3 | https://huggingface.co/Comfy-Org/MiniMax-H3 |
+| 同上：lightx2v `minimax_h3_fl2v_turbo_8step_v1.0` LoRA | **模型卡未標示授權**；H3 蒸餾衍生作品 | 不明（至少受 H3 授權約束） | 只附下載連結、不轉散布 | https://huggingface.co/lightx2v/Minimax-h3-Turbo |
+| 同上：`face_yolov8m.pt`（Bingsu/adetailer） | Apache-2.0 | 可以 | 保留授權；`.pt` 是 pickle 格式，只從這個來源下載並核對 sha256 | https://huggingface.co/Bingsu/adetailer |
+| 同上：ComfyUI-H3-FaceRefine 節點 | MIT | 可以 | 保留授權 | https://github.com/Carasibana/ComfyUI-H3-FaceRefine |
+| 同上：ComfyUI-H3-NativeAudioLock 節點（71 行，放在另一個工作流 repo 裡） | **原 repo 沒有授權檔**（等同保留所有權利） | 不明 | 本 repo 不複製，只教你自己去拿；用前先讀過程式 | https://github.com/Shrek3OnVH5/MiniMax-H3-NativeAudio-MusicVideo-Workflow |
+| 同上：ultralytics（偵測器執行套件） | **AGPL-3.0** | 有條件（散布或提供網路服務須依 AGPL 開放原始碼；只在自己電腦上跑不受影響） | 保留授權 | https://github.com/ultralytics/ultralytics |
 | YuE2（選用） | CC BY-NC 4.0 | 不可以 | 署名、非商業 | https://huggingface.co/m-a-p |
+| ACE-Step 1.5 XL（選用，`tools/ace_song.py`；2026-10-27 加入） | MIT（ACE-Step 官方模型卡）；Comfy-Org 打包頁標 Apache-2.0 | 可以 | 保留授權 | https://huggingface.co/ACE-Step/Ace-Step1.5 |
 | OpenAI Image 2.5 API（選用，雲端） | OpenAI Services Agreement | 可以 | 產出歸客戶（第 4.1 條）；另須遵守 Usage Policies | https://cdn.openai.com/osa/openai-services-agreement.pdf |
 
 ## 軟體
@@ -69,7 +79,7 @@
 |---|---|---|---|
 | 角色定妝照、LoRA 首幀 | Qwen-Image 2.1 | 雲端 OpenAI Image 2.5（`tools/img25.py`，產出歸使用者，依 OpenAI 條款）；或向 Qwen 申請商業授權 | Image 2.5 是原專案實際出片用的首幀工具；替換後的整條流程未在本 repo 重測 |
 | 首幀（附參考圖） | Qwen-Image-Edit 2511 | 不用換（Apache-2.0） | 已測 |
-| 台詞配音 | BreezyVoice | 不用換（Apache-2.0） | 已測：三種硬體配置都通過；2026-10-07 整片 53 句台灣國語腔調分數 0.85（舊做法 Breeze／VoxCPM2 0.80） |
+| 台詞配音 | BreezyVoice；或 Ming-3.0-TTS 0.5B（`tools/make_ming.py`，2026-10-29 起原專案的固定音軌預設） | 不用換（Apache-2.0／MIT） | BreezyVoice 已測：三種硬體配置都通過；2026-10-07 整片 53 句台灣國語腔調分數 0.85（舊做法 Breeze／VoxCPM2 0.80）。Ming 原專案 2026-10-28 實測（RTX 5090）：9 句全對、像參考音 0.86（Breeze 0.81），使用者聽「沒有大陸腔」；三種硬體配置未測 |
 | 角色參考音（聲音設計） | Breeze TTS 2 | VoxCPM2 文字聲音設計（`gen_voice.py --design --control "描述"`，Apache-2.0）或自己有權利的真人錄音，再交給 BreezyVoice | VoxCPM2 聲音設計已能產生聲音；設計出的聲音台灣腔夠不夠未系統比較 |
 | 挑音的發音對照 | edge-tts | 自己錄標準音，或只靠聽寫（ASR）挑 | 未測 |
 | H3、Music 3 | — | 不用換，但要遵守地區限制、標示 AI 生成、商業顯著標示模型名稱 | — |
@@ -78,6 +88,7 @@
 
 | 選項 | 本機／雲端 | 授權 | 台灣腔證據 | 備註 |
 |---|---|---|---|---|
+| **Ming-3.0-TTS 0.5B（螞蟻 inclusionAI）** | 本機（ComfyUI 節點） | MIT | 原專案 2026-10-28 試聽：使用者「聲音非常的好，也沒有大陸腔」 | 參考音克隆；**一定要餵簡體字**（繁體會念錯，`make_ming.py` 自動轉）；顯存約 3GB；可用行內標籤（[Sigh]、[Laughter]） |
 | **BreezyVoice（聯發科＋台大）＝本 repo 預設** | 本機 | Apache-2.0（程式與權重） | 強：官方專為台灣華語設計，注音控制、破音字處理；本 repo 實測腔調分數最高 | 參考音克隆；沒有文字聲音設計；底子是 CosyVoice 1。https://github.com/mtkresearch/BreezyVoice |
 | BreezeBlue 官方付費 API（Breeze TTS 2 雲端版） | 雲端 | 經官方平台產生的音訊可商用（模型卡與價格頁說法不一致，訂閱前請向官方確認） | 與本 repo 用的 Breeze TTS 2 同一模型 | https://breezeblue.ai/pricing |
 | Microsoft Azure Speech zh-TW | 雲端 | 付費可商用 | 強：官方「Taiwanese Mandarin」 | 只有 3 個聲音、沒有童聲 |

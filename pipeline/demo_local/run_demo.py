@@ -33,7 +33,7 @@ PYH3 = os.environ.get("PY_H3", r"C:\AI\H3\venv\Scripts\python.exe")
 PYV = os.environ.get("PY_VOICE", r"C:\AI\Voice\venv\Scripts\python.exe")
 PYB = os.environ.get("PY_BREEZE", r"C:\AI\BreezeTTS\venv\Scripts\python.exe")
 PYBV = os.environ.get("PY_BREEZYVOICE", r"C:\AI\BreezyVoice\venv\Scripts\python.exe")
-SEP = str(Path(PYV).parent / "audio-separator.exe")
+SEP = str(Path(PYV).parent / ("audio-separator.exe" if os.name == "nt" else "audio-separator"))
 HOST = os.environ.get("COMFY_HOST", "http://127.0.0.1:8188")
 FONT = "C:/Windows/Fonts/msjhbd.ttc"
 TIMING = OUT / "timing.json"

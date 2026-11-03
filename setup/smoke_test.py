@@ -62,7 +62,7 @@ def newest(d, exts):
 rows = []
 
 
-def step(name, cmd, expect=None, timeout=1800):
+def step(name, cmd, expect=None, timeout=int(os.environ.get('SMOKE_TIMEOUT', 1800))):
     t0 = time.time()
     try:
         r = subprocess.run(cmd, cwd=str(OUT), capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=timeout,

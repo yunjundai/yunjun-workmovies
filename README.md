@@ -1,8 +1,51 @@
 # 山獅霸的多重宇宙：AI 短片製作工作流（16GB 顯卡＋32GB 記憶體版：16GB VRAM＋32GB RAM）
 
+> **本 repo 是修改版**：以 [mathruffian-dot/shanshiba-workflow-16gvram-32gram](https://github.com/mathruffian-dot/shanshiba-workflow-16gvram-32gram)（山獅霸的多重宇宙）為基礎，加上歌曲 MV 流程（`pipeline/template_mv/`、`tools/mv_song.py`、`docs/08_MV製作.md`）、Colab 分批上傳與自動重試、合唱對嘴等修改。程式碼 MIT、文件 CC BY-NC 4.0，授權與著作權沿用原作者（見 `LICENSE`、`LICENSE-docs.md`），僅限非商業使用。
+
 YouTube 頻道「山獅霸的多重宇宙」的完整製作做法：每支片 1–3 分鐘、16:9、24fps，台灣校園奇幻喜劇。劇本由 AI agent（Claude Code）協作，首幀、影片、配音、配樂全部用本機模型生成，挑音、後製、自審全部腳本化；人只在劇本、首幀、成片三個關卡驗收。
 
 > 私有分享版。原專案的本人照片、本人克隆聲音、API 金鑰、第三方素材、角色定妝照都沒有放進來。
+
+## 饒舌對決三分鐘上手
+
+兩位歷史人物各唱一整首歌互嗆、DJ 主持的 3–4 分鐘橫式影片（範例：〈微積分之戰〉牛頓 vs 萊布尼茲）。把 `agent/skills/rap-battle/` 複製到你專案的 `.claude/skills/`，跟 Claude Code 說「做一場饒舌對決」，它會帶你選題、寫歌詞、填 `battle.json`，再跑下面這些指令。**整場在 Colab 跑，你的電腦不需要顯卡**；每段跑完 `out/` 會同步回本機，看過再跑下一段。
+
+先準備 Google AI Pro（或 Colab 運算單元）＋ Colab CLI（見 [cloud/README.md](cloud/README.md)），然後：
+```
+xcopy /E /I pipeline\template_battle pipeline\my_battle      # 複製範本（macOS／Linux：cp -r pipeline/template_battle pipeline/my_battle）
+python cloud/colab_h3.py start                               # 開 G4＋完整安裝（含 YuE2、Ming-3.0-TTS），約 10 分鐘
+```
+
+### 基本版：全部在 Colab、不用任何金鑰（YuE2 生歌＋Qwen-Image 2.1 畫圖＋Ming 念 DJ）
+```
+python cloud/colab_h3.py film pipeline/my_battle yue                    # 每人抽 10 首、只留拍速對的 → 聽 out/yue/
+python cloud/colab_h3.py film pipeline/my_battle songs dj audio         # 聽 out/audio/mix.wav
+python cloud/colab_h3.py film pipeline/my_battle chars scenes frames    # 看 out/first/_sheet.jpg
+python cloud/colab_h3.py film pipeline/my_battle specs h3               # 看 out/review/clips_*.jpg
+python cloud/colab_h3.py film pipeline/my_battle cut review srt         # 看 out/cut/ 的完整成片
+python cloud/colab_h3.py stop                                           # 一定要關：閒置的 G4 每小時照扣 8.9 單元
+```
+2026-10-29 在 Colab G4 從頭實測通過：一整場約 1.5–2 小時、15–18 運算單元。YuE2 的 rap 狠勁較弱、要多抽；Qwen 畫不出雙人對峙、場景裡的字會亂碼；**Qwen-Image 2.1 只能非商業使用**。
+
+### 優化版：Suno 生歌＋Image 2.5 畫圖（要 Kie.ai 與 OpenAI 金鑰）
+在 `battle.json` 加一行 `"image_backend": "img25"`，然後：
+```
+python cloud/colab_h3.py film pipeline/my_battle songtext               # 產生 out/songtext/suno_*.txt
+set KIE_API_KEY=你的金鑰                                                  # macOS／Linux 用 export
+cd pipeline/my_battle
+python kie_suno.py submit A a1 && python kie_suno.py poll a1            # 每次 2 版，約 $0.06
+python kie_suno.py submit B b1 && python kie_suno.py poll b1            # 聽 out/suno/，挑好的存成 song/A.mp3、song/B.mp3
+cd ../..
+set OPENAI_API_KEY=你的金鑰                                               # film 會自動帶到 VM，畫面上只顯示 ***
+python cloud/colab_h3.py film pipeline/my_battle songs dj audio         # 聽 out/audio/mix.wav
+python cloud/colab_h3.py film pipeline/my_battle chars scenes frames    # 看 out/first/_sheet.jpg
+python cloud/colab_h3.py film pipeline/my_battle specs h3               # 看 out/review/clips_*.jpg
+python cloud/colab_h3.py film pipeline/my_battle cut review srt         # 看 out/cut/ 的完整成片
+python cloud/colab_h3.py stop
+```
+沒有 Kie：把 `out/songtext/suno_A_lyrics.txt`、`suno_A_style.txt` 貼到 Suno 網頁的 Custom 模式（B 同理）也一樣。Suno 編曲最豐富、rap 最兇；Image 2.5 畫得出雙人對峙和正確的字。原頻道兩場對決用的就是 Suno＋Image 2.5，但**範本的 Image 2.5 分支還沒在 Colab 從頭重跑過**。
+
+有顯卡想在本機跑：同樣的 stage 改成 `make_battle.py <stage…>`，詳見 [pipeline/template_battle/README.md](pipeline/template_battle/README.md)。
 
 ## 1. 這份是給誰的
 
@@ -42,6 +85,8 @@ YouTube 頻道「山獅霸的多重宇宙」的完整製作做法：每支片 1�
 全部在本機生成（只有 BreezyVoice 備案挑音用的「台灣國語答案卷」edge-tts 需要連網，沒網路可改用本地 Breeze）。
 
 > **2026-10-23 預設改變：畫面內的台詞改成「H3 自己念＋角色參考音」**（h3_shot spec 的 `audio.voice_ref`），不再先用 BreezyVoice 配音當固定音軌。原頻道在 RTX 5090 實測（同一場戲三鏡）：聲音像參考音的程度和 TTS 差不多（聲紋 0.66 對 0.68）、三鏡最像同一個人（0.75）、表演比固定音軌生動。BreezyVoice 固定音軌改當備案（H3 念錯抽不出來、數字日期難字、要精準時間點的聲畫同步）。⚠ **本 repo 的成片範本 `make_film.py` 已改成這個預設，但還沒在本 repo 從頭實測**；遇到問題可在 `film.json` 設 `"voice_mode": "fixed"` 退回舊做法。
+> **2026-10-24 新增（選用）：遠景小臉精修 `tools/face_refine.py`**。遠景裡臉小於約 50 px 的角色，放大前追臉、用 H3 低強度重畫臉再貼回，原頻道 3 鏡實測 25–30 px 的臉從一團糊變成認得出本人、不閃，每鏡約 30 秒（只在 ComfyUI 0.40＋RTX 5090 測過；要另裝節點與 23GB 模型，見 [docs/06_安裝.md](docs/06_安裝.md)）。同日也實測了社群微調模型 Singularity V2，**不採用**（參考音較不像本人、會改掉首幀背景），結果在 [docs/03_規則與踩坑.md](docs/03_規則與踩坑.md)。
+
 每一步用哪支腳本、輸入輸出是什麼：[docs/02_端到端流程.md](docs/02_端到端流程.md)；本地角色與首幀做法：[docs/07_本地角色與首幀.md](docs/07_本地角色與首幀.md)。
 
 **裝好之後先跑全本地示範片** `pipeline/demo_local/run_demo.py`：從零做兩個角色、4 鏡、配音、配樂，約 17 秒成片，證明整條工作流在你的電腦上能跑通。
@@ -62,7 +107,10 @@ docs/
 tools/                      全域工具（放到 C:\AI\tools）
   h3_shot.py ⭐             分鏡 JSON → 官方格式提示詞 → 格式檢查 → H3 生成
   make_breezyvoice.cmd      台詞配音備案：BreezyVoice 每句 8 候選 → 聽寫＋腔調自動挑（預設改由 H3 自己念）
-  gen_image.py              本機 Qwen-Image 2.1／Qwen-Image-Edit 生圖
+  gen_image.py              本機 Qwen-Image 2.1／Qwen-Image-Edit 生圖（`--turbo`＝8 步草稿模式）
+  make_whitemodel.py        舞蹈／武打：原片 → 灰色白模影片，當 H3 動作參考
+  make_narration.py         口播／旁白：BreezyVoice 一次念 2–3 句、停頓照標點、自動挑候選
+  cosy_vc.py                換聲：Seedance 等雲端影片的台詞換成角色音色，字的時間不變（選用）
   start_comfy.cmd           啟動 ComfyUI
   img25.py                  OpenAI Image 2.5 生圖／編輯（選用，雲端）
   pron_check.py／pron_compare.py  中文配音聲調審核
@@ -89,12 +137,12 @@ configs/profile.cmd         這個硬體版本的環境變數
 | # | 步驟 | 工具 | 看哪份文件 | 產出 | 要人工看嗎 |
 |---|---|---|---|---|---|
 | 1 | 劇本＋鏡表（每鏡 ≤12 秒） | `agent/skills/shanshiba-drama` | SKILL.md 開頭的版本說明、`docs/03` | `劇本.md` | ✅ 確認劇本 |
-| 1.5 | 生成前試映：16 宮格分鏡草圖＋讀本（量實際片長） | `make_storyboard.py`（要 OpenAI 金鑰，沒有就跳過草圖）、`make_breezyvoice.cmd`、`assemble_read.py` | `agent/skills/shanshiba-drama/references/table-read.md` | `preview/讀本試映.mp4` | ✅ 聽完說「通過」才做首幀 |
+| 1.5 | 生成前試映：16 宮格分鏡草圖＋**文字讀本**（不做 TTS；用字數估片長與每鏡 H3 鏡長＝字數÷3＋2 秒） | `make_storyboard.py`（要 OpenAI 金鑰，沒有就跳過草圖）、`assemble_read.py` | `agent/skills/shanshiba-drama/references/table-read.md` | `preview/讀本試映.mp4`、`讀本_timeline.json` | ✅ 看完說「通過」才做首幀 |
 | 2 | 角色定妝照（單張、灰底、半身） | `gen_image.py`（Qwen-Image 2.1） | `docs/07` §1 | `chars/<角色>.png` | ✅ 挑一張定案 |
 | 3 | 場景母版（空景，之後裁成各鏡景別） | `gen_image.py` | `docs/07` §4 | `masters/*.png` | |
 | 4 | 首幀（附定妝照＋母版裁切，**每鏡照抄角色完整外觀描述**） | `gen_image.py --model qwen-edit --ref` | `docs/07` §2–3 | `first/<鏡>.png` | ✅ 逐張看：臉、服裝、多手多腳、背景有沒有字 |
 | 5 | 角色聲音（一次） | `breeze_batch.py`（設計參考音） | `docs/03` §5 | `voice/ref_<角色>.wav` | ✅ 聽一次、定案後不換 |
-| 6 | H3 每鏡（DMAD 4 步、只給首幀；**有台詞給角色參考音 `audio.voice_ref`、H3 自己念**，一鏡一位說話者；看得到臉又沒台詞的鏡給靜音） | `h3_shot.py`（spec 加 `"draft": true`） | `docs/03` §4–5、`tools/examples/` | `h3/<鏡>/clip.mp4` | ✅ 抽格看：換臉、多人、鏡頭漂移；**聽寫比對台詞**（H3 會改用詞） |
+| 6 | H3 每鏡（DMAD 4 步、只給首幀；**有台詞給角色參考音 `audio.voice_ref`、H3 自己念**（兩三人對話同鏡用 `voice_refs` 各給參考音）；看得到臉又沒台詞的鏡給靜音；**`action` 照官方結構寫 50–120 字具體動作**，動作鏡首幀畫動作開始前） | `h3_shot.py`（spec 加 `"draft": true`） | `docs/02` §6「動作寫法」、`docs/03` §4–5、`tools/examples/` | `h3/<鏡>/clip.mp4` | ✅ 抽格看：換臉、多人、鏡頭漂移；**聽寫比對台詞**（H3 會改用詞） |
 | 7 | 配樂（純器樂、多抽幾個 seed，挑人聲殘留最少的） | `gen_music3.py` → `audio-separator` | `docs/02` §9 | `music/*.flac` | |
 | 8 | 放大、剪接（H3 自己念的台詞不提前；BreezyVoice 備案台詞提前 0.2 秒）、配樂壓低（台詞期間 15–30%）、響度、字幕 | `upscale_vsr.py`、ffmpeg | `docs/02` §7、§10（**響度指令照抄，`alimiter` 要 `level=false`**） | `cut/<片名>_1080p.mp4` | |
 | 9 | 片尾（工具名單＋AI 生成標示） | `templates/ending/render_ending.py` | `templates/ending/README.md` | `ending.mp4` | |

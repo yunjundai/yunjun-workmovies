@@ -22,3 +22,17 @@ pipeline/demo_local/out/
 pipeline/*/out/
 *.png.bak
 setup/smoke_out_colab/
+
+# 個人片子資料夾不上傳（只放工具與範本）
+pipeline/*/
+!pipeline/demo_local/
+!pipeline/example_D-7/
+!pipeline/template_local/
+!pipeline/template_mv/
+!pipeline/template_battle/
+# 備份與系統檔
+.DS_Store
+*.orig
+*.orig_*
+*.pre_merge_*
+*.bak_*

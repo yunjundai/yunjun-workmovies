@@ -59,8 +59,12 @@ def render(cfg):
             if ci == 0: d.text((150, 725), cfg.get("header", "本片使用的 AI 工具"), font=f_head, fill=(255, 255, 255), stroke_width=3, stroke_fill=(0, 0, 0))
             enc.stdin.write(np.clip(np.asarray(fr).astype(np.float32) * fade, 0, 255).astype(np.uint8).tobytes())
     seal = Image.open(HERE / "assets" / "seal_gold.png").convert("RGB").resize((W, H), Image.LANCZOS)
-    f = ImageFont.truetype(FONT_TITLE, 176); meas = ImageDraw.Draw(Image.new("L", (W, H)))
-    chars = []; tw = sum(meas.textlength(c, font=f) for c in title) + 10 * (len(title) - 1); x = (W - tw) / 2
+    meas = ImageDraw.Draw(Image.new("L", (W, H))); sz = 176      # 片名太長自動縮字，最多佔畫面寬 88%（2026-10-23）
+    while True:
+        f = ImageFont.truetype(FONT_TITLE, sz); tw = sum(meas.textlength(c, font=f) for c in title) + 10 * (len(title) - 1)
+        if tw <= W * 0.88 or sz <= 64: break
+        sz -= 8
+    chars = []; x = (W - tw) / 2
     for c in title:
         cm = Image.new("L", (W, H), 0); ImageDraw.Draw(cm).text((x, H / 2 - 110), c, font=f, fill=255, stroke_width=3, stroke_fill=255); chars.append(cm); x += meas.textlength(c, font=f) + 10
     n = int(title_dur * FPS)
